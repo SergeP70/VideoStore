@@ -5,6 +5,13 @@
 }
 
 <h2>@Model.Name</h2>
-<h3>Subscribed to Newsletter: @Model.IsSubscribedToNewsletter</h3>
+<br />
+<ul>
+    <li><h4>Subscribed to Newsletter: @Model.IsSubscribedToNewsletter</h4></li>
+    @if (Model.Birthday.HasValue)
+    {
+        <li><h4>Birthday: @Model.Birthday.Value.ToString("dd/MM/yyyy")</h4></li>
+    }
+</ul>
 
 

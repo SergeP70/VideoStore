@@ -204,9 +204,26 @@
     <Compile Include="Migrations\202009031512464_PopulateMembershipNames.designer.cs">
       <DependentUpon>202009031512464_PopulateMembershipNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009031539096_AddCustomerBirthday.cs" />
+    <Compile Include="Migrations\202009031539096_AddCustomerBirthday.designer.cs">
+      <DependentUpon>202009031539096_AddCustomerBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009031658472_AddMovieAttributeGenre.cs" />
+    <Compile Include="Migrations\202009031658472_AddMovieAttributeGenre.designer.cs">
+      <DependentUpon>202009031658472_AddMovieAttributeGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009031702487_ChangeMovieAttribs.cs" />
+    <Compile Include="Migrations\202009031702487_ChangeMovieAttribs.designer.cs">
+      <DependentUpon>202009031702487_ChangeMovieAttribs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009031705469_PopulateGenres.cs" />
+    <Compile Include="Migrations\202009031705469_PopulateGenres.designer.cs">
+      <DependentUpon>202009031705469_PopulateGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -313,6 +330,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009031512464_PopulateMembershipNames.resx">
       <DependentUpon>202009031512464_PopulateMembershipNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009031539096_AddCustomerBirthday.resx">
+      <DependentUpon>202009031539096_AddCustomerBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009031658472_AddMovieAttributeGenre.resx">
+      <DependentUpon>202009031658472_AddMovieAttributeGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009031702487_ChangeMovieAttribs.resx">
+      <DependentUpon>202009031702487_ChangeMovieAttribs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009031705469_PopulateGenres.resx">
+      <DependentUpon>202009031705469_PopulateGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -5,4 +5,11 @@
 }
 
 <h2>@Model.Name</h2>
+<br />
+<ul>
+    <li><h4>Genre: @Model.Genre.Name</h4></li>
+    <li><h4>Release Date: @Model.ReleaseDate.ToString("dddd dd/MM/yyyy")</h4></li>
+    <li><h4>Date Added: @Model.DateAdded.ToString("dddd dd/MM/yyyy")</h4></li>
+    <li><h4>Number in Stock: @Model.Stock</h4></li>
 
+</ul>
