@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VideoStore.Models;
+using VideoStore.ViewModels;
 
 namespace VideoStore.Controllers
 {
@@ -46,6 +47,23 @@ namespace VideoStore.Controllers
                 return View(customer);
             }
         }
+
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer )
+        {
+            return View();
+        }
+
 
 
         //private IEnumerable<Customer> GetCustomers()
