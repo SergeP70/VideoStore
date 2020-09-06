@@ -1,13 +1,13 @@
-﻿@model VideoStore.ViewModels.NewCustomerViewModel
+﻿@model VideoStore.ViewModels.CustomerFormViewModel
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "CustomerForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>New Customer</h2>
 
-@using (@Html.BeginForm("Create", "Customers"))
+@using (@Html.BeginForm("Save", "Customers"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
@@ -15,17 +15,18 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Birthday)
-        @Html.TextBoxFor(m => m.Customer.Birthday, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Customer.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership", new { @class = "form-control" })
     </div>
     <div class="checkbox">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to newsletter?
         </label>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership", new { @class = "form-control" })
-    </div>
+    @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 
 
