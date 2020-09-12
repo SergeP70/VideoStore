@@ -53,14 +53,32 @@ namespace VideoStore.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
             return View("CustomerForm", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Save(Customer customer )
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Customer customer)
         {
+            /*
+             * 1. Add Data Annotations on the entity
+             * 2. Use modelstate.valid to change flow, if not valid: return the same view
+             * 3. Add validation messages to our form
+             */
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("Customerform", viewModel);
+            }
+            
+
             if (customer.Id==0)
             {
                 _context.Customers.Add(customer);

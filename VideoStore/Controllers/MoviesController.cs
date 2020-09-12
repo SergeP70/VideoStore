@@ -51,9 +51,8 @@ namespace VideoStore.Controllers
             var genres = _context.Genres.ToList();
             var viewModel = new MovieFormViewModel()
             {
-                Genres = genres
+                Genres = genres,
             };
-
             return View("MovieForm", viewModel);
         }
 
@@ -66,9 +65,8 @@ namespace VideoStore.Controllers
                 return HttpNotFound();
             }
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
@@ -77,8 +75,27 @@ namespace VideoStore.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            /*
+             * 1. Add Data Annotations on the entity
+             * 2. Use modelstate.valid to change flow, if not valid: return the same view
+             * 3. Add validation messages to our form
+             */
+
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                    
+                };
+
+                return View("MovieForm", viewModel);
+            }
+            
+
             if (movie.Id==0)
             {
                 movie.DateAdded = DateTime.Now;

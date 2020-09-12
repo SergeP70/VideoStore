@@ -28,6 +28,7 @@ namespace VideoStore.Models
         
         [Required]
         [Display(Name="Number in Stock")]
+        [Range(1,10, ErrorMessage ="Number in stock must be between 1 and 20")]
         public byte Stock { get; set; }
 
 
