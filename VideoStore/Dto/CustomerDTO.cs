@@ -19,7 +19,7 @@ namespace VideoStore.Dto
 
         public byte MembershipTypeId { get; set; }
 
-        [Min18YearsIfAMember]
+        //[Min18YearsIfAMember]
         public DateTime? Birthday { get; set; }
 
     }
