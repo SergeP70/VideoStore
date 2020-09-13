@@ -13,7 +13,9 @@ namespace VideoStore.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Customer, CustomerDTO>();
-            Mapper.CreateMap<CustomerDTO, Customer>();
+            Mapper.CreateMap<CustomerDTO, Customer>()
+                .ForMember(m => m.Id, opt => opt.Ignore());
+
         }
     }
 }
