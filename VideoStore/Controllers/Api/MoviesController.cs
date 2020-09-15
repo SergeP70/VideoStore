@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using VideoStore.Dto;
 using VideoStore.Models;
 
 namespace VideoStore.Controllers.Api
@@ -18,60 +20,61 @@ namespace VideoStore.Controllers.Api
         }
 
         // GET /api/movies
-        public IEnumerable<Movie> GetMovies()
+        public IHttpActionResult GetMovies()
         {
-            return _context.Movies.ToList();
+            return Ok(_context.Movies.ToList().Select(Mapper.Map<Movie, MovieDTO>));
+
         }
 
         // GET /api/movies/1
-        public Movie GetMovie(int id)
+        public IHttpActionResult GetMovie(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movie==null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return movie;
+            return Ok(Mapper.Map<Movie, MovieDTO>(movie));
         }
 
         // POST /api/movies
-        
         [HttpPost]
-        public Movie CreateMovie(Movie movie)
+        public IHttpActionResult CreateMovie(MovieDTO movieDTO)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
+            var movie = Mapper.Map<MovieDTO, Movie>(movieDTO);
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
-            return movie;
+            movieDTO.Id = movie.Id;
+
+            return Created(new Uri(Request.RequestUri + "/" + movie.Id), movieDTO);
         }
 
         // PUT /api/movies/1
         [HttpPut]
-        public void UpdateMovie(int id, Movie movie)
+        public IHttpActionResult UpdateMovie(int id, MovieDTO movieDTO)
         {
             var movieInDB = _context.Movies.SingleOrDefault(m => m.Id == id);
             
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             if (movieInDB==null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            movieInDB.Name = movie.Name;
-            movieInDB.GenreId = movie.GenreId;
-            movieInDB.ReleaseDate = movie.ReleaseDate;
-            movieInDB.DateAdded = movie.DateAdded;
-            movieInDB.Stock = movie.Stock;
+            Mapper.Map<MovieDTO, Movie>(movieDTO, movieInDB);
 
             _context.SaveChanges();
+
+            return Ok();
         }
 
         // DELETE /api/movies/1
         [HttpDelete]
-        public void DeleteMovie(int id)
+        public IHttpActionResult DeleteMovie(int id)
         {
             var movieInDB = _context.Movies.SingleOrDefault(m => m.Id == id);
 
@@ -81,6 +84,7 @@ namespace VideoStore.Controllers.Api
             _context.Movies.Remove(movieInDB);
             _context.SaveChanges();
 
+            return Ok();
         }
 
     }

@@ -16,6 +16,9 @@ namespace VideoStore.App_Start
             Mapper.CreateMap<CustomerDTO, Customer>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
 
+            Mapper.CreateMap<Movie, MovieDTO>();
+            Mapper.CreateMap<MovieDTO, Movie>()
+                .ForMember(m => m.Id, opt => opt.Ignore());
         }
     }
 }
