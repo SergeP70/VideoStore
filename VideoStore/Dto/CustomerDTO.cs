@@ -18,6 +18,8 @@ namespace VideoStore.Dto
         public bool IsSubscribedToNewsletter { get; set; }
 
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDTO MembershipType { get; set; }
+
 
         //[Min18YearsIfAMember]
         public DateTime? Birthday { get; set; }
