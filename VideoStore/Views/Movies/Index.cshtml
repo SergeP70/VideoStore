@@ -17,11 +17,12 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="movies" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th scope="col">Movies</th>
                 <th scope="col">Genre</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +31,42 @@ else
                 <tr>
                     <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
                     <td>@movie.Genre.Name</td>
+                    <td><button data-movie-id="@movie.Id" class="btn-link js-delete">Delete</button></td>
                 </tr>
             }
         </tbody>
     </table>
+}
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#movies").DataTable();
+
+            $("#movies").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                method: "DELETE",
+                                url: "/api/movies/" + button.attr("data-movie-id"),
+                                success: function () {
+                                    button.parents("tr").remove();
+                                }
+                            });
+
+                        }
+                 });
+
+            });
+        
+
+        });
+
+
+
+    </script>
+    
 }
