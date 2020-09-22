@@ -246,6 +246,10 @@
     <Compile Include="Migrations\202009221120126_SeedUsers.designer.cs">
       <DependentUpon>202009221120126_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009222009439_AddMobileToApplicationUser.cs" />
+    <Compile Include="Migrations\202009222009439_AddMobileToApplicationUser.designer.cs">
+      <DependentUpon>202009222009439_AddMobileToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -555,6 +559,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009221120126_SeedUsers.resx">
       <DependentUpon>202009221120126_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009222009439_AddMobileToApplicationUser.resx">
+      <DependentUpon>202009222009439_AddMobileToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
