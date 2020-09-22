@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using VideoStore.Models;
 
 namespace VideoStore.Dto
 {
@@ -16,6 +17,7 @@ namespace VideoStore.Dto
 
         [Required]
         public byte GenreId { get; set; }
+        public GenreDTO Genre { get; set; }
 
         [Required]
         public DateTime ReleaseDate { get; set; }

@@ -21,6 +21,7 @@ namespace VideoStore.App_Start
                 .ForMember(m => m.Id, opt => opt.Ignore());
 
             Mapper.CreateMap<MembershipType, MembershipTypeDTO>();
+            Mapper.CreateMap<Genre, GenreDTO>();
 
         }
     }
