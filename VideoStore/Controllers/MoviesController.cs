@@ -59,6 +59,7 @@ namespace VideoStore.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int Id)
         {
             Movie movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
@@ -118,20 +119,6 @@ namespace VideoStore.Controllers
 
             return RedirectToAction("Index", "Movies");
         }
-
-
-        //private IEnumerable<Movie> GetMovies()
-        //{
-        //    //return new List<Movie>();
-        //    return new List<Movie>
-        //    {
-        //        new Movie {Id = 1, Name= "Heat"},
-        //        new Movie {Id = 2, Name= "First Blood"},
-        //        new Movie {Id = 3, Name= "Parasite"},
-        //        new Movie {Id = 4, Name= "The Invisible Man"},
-        //        new Movie {Id = 5, Name= "Gladiator"},
-        //    };
-        //}
 
     }
 }

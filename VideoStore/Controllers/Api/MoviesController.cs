@@ -43,6 +43,7 @@ namespace VideoStore.Controllers.Api
 
         // POST /api/movies
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateMovie(MovieDTO movieDTO)
         {
             if (!ModelState.IsValid)
@@ -59,6 +60,7 @@ namespace VideoStore.Controllers.Api
 
         // PUT /api/movies/1
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult UpdateMovie(int id, MovieDTO movieDTO)
         {
             var movieInDB = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -78,6 +80,7 @@ namespace VideoStore.Controllers.Api
 
         // DELETE /api/movies/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult DeleteMovie(int id)
         {
             var movieInDB = _context.Movies.SingleOrDefault(m => m.Id == id);
